@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+    <link rel="stylesheet" type="text/css" href="/index.css">
+</head>
+<body>
+    <div class="container">
+        <h1>BMI Calculator</h1>
+        <form action="/calculate-bmi" method="POST" onsubmit="return validateForm()">
+            <label for="weight">Weight (kg):</label>
+            <input type="text" id="weight" name="weight" required>
+            <br>
+            <label for="height">Height (m):</label>
+            <input type="text" id="height" name="height" required>
+            <br>
+            <button type="submit">Calculate BMI</button>
+        </form>
+        <p id="error-message" class="error"></p>
+    </div>
+
+    <script>
+        function validateForm() {
+            var weight = document.getElementById('weight').value;
+            var height = document.getElementById('height').value;
+            var errorMessage = document.getElementById('error-message');
+            errorMessage.textContent = '';
+
+            if (isNaN(weight) || isNaN(height) || weight <= 0 || height <= 0) {
+                errorMessage.textContent = 'Please enter valid positive numbers for weight and height.';
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+</html>
